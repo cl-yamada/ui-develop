@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEditor;
 
+/// 
+/// Preferencesに設定を以降したので廃止
+///
+#if false
 public class HierarchyGUISettingEditor : EditorWindow
 {
     private static HierarchyGUISetting setting;
@@ -110,3 +114,4 @@ public class HierarchyGUISettingEditor : EditorWindow
         GUILayout.Label("右寄せラベル", rightStyle);
     }
 }
+#endif

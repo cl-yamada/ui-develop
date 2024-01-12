@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ Create HierarchyGUISetting", fileName = "HierarchyGUISetting")]
-public class HierarchyGUISetting : ScriptableObject
+[FilePath("HierarchyGUISetting.asset", FilePathAttribute.Location.PreferencesFolder)]
+public class HierarchyGUISetting : ScriptableSingleton<HierarchyGUISetting>
 {
     [SerializeField, Header("アクティブ切り替え")]
     public bool useActiveToggle;
-    [SerializeField, Header("コンポーネント表示")]
+    [SerializeField, Header("コンポーネントアイコン表示")]
     public bool useDrawComponents;
-    [SerializeField, Header("Imageのサムネイル表示")]
+    [SerializeField, Header("Imageがある場合サムネイル表示")]
     public bool useDrawImageReference;
+
+    public void Save()
+    {
+        Save(true);
+    }
 }

@@ -4,17 +4,18 @@ using UnityEngine.UI;
 
 public static class HierarchyGUI
 {
-    private static HierarchyGUISetting setting;
+    //private static HierarchyGUISetting setting;
 
     [InitializeOnLoadMethod]
     private static void Initialize()
     {
-        setting = AssetDatabase.LoadAssetAtPath("Assets/Editor/3rdParty/Hierarchy/HierarchyGUISetting.asset", typeof(HierarchyGUISetting)) as HierarchyGUISetting;
-        if (setting != null)
-        {
-            EditorApplication.hierarchyWindowItemOnGUI += OnGUI;
-            //Debug.Log("++ Hi,welcome! Success start HierarchyGUI feature. ++");
-        }
+        EditorApplication.hierarchyWindowItemOnGUI += OnGUI;
+        //setting = AssetDatabase.LoadAssetAtPath("Assets/Editor/3rdParty/Hierarchy/HierarchyGUISetting.asset", typeof(HierarchyGUISetting)) as HierarchyGUISetting;
+        //if (setting != null)
+        //{
+        //    EditorApplication.hierarchyWindowItemOnGUI += OnGUI;
+        //    //Debug.Log("++ Hi,welcome! Success start HierarchyGUI feature. ++");
+        //}
     }
 
     private const int WIDTH = 16;
@@ -32,7 +33,7 @@ public static class HierarchyGUI
 
         int count = 0;
 
-        if (setting.useActiveToggle)
+        if (HierarchyGUISetting.instance.useActiveToggle)
         {
             var rect = selectionRect;
             rect.x = rect.xMax - OFFSET - (WIDTH * count);
@@ -41,7 +42,7 @@ public static class HierarchyGUI
             count++;
         }
 
-        if (setting.useDrawImageReference)
+        if (HierarchyGUISetting.instance.useDrawImageReference)
         {
             var rect = selectionRect;
             rect.x = rect.xMax - OFFSET - (WIDTH * count);
@@ -50,7 +51,7 @@ public static class HierarchyGUI
             count++;
         }
 
-        if (setting.useDrawComponents)
+        if (HierarchyGUISetting.instance.useDrawComponents)
         {
             var rect = selectionRect;
             rect.x = rect.xMax - OFFSET - (WIDTH * count);
