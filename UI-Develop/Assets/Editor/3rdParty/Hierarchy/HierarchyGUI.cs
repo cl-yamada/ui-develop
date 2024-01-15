@@ -4,18 +4,12 @@ using UnityEngine.UI;
 
 public static class HierarchyGUI
 {
-    //private static HierarchyGUISetting setting;
-
     [InitializeOnLoadMethod]
     private static void Initialize()
     {
+        HierarchyGUISetting.instance.LoadSettings();
+
         EditorApplication.hierarchyWindowItemOnGUI += OnGUI;
-        //setting = AssetDatabase.LoadAssetAtPath("Assets/Editor/3rdParty/Hierarchy/HierarchyGUISetting.asset", typeof(HierarchyGUISetting)) as HierarchyGUISetting;
-        //if (setting != null)
-        //{
-        //    EditorApplication.hierarchyWindowItemOnGUI += OnGUI;
-        //    //Debug.Log("++ Hi,welcome! Success start HierarchyGUI feature. ++");
-        //}
     }
 
     private const int WIDTH = 16;

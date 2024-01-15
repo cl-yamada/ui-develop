@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine.UIElements;
 
+// Preferencesには持たせなくしたので無効化
+#if false
 public class HierarchyGUISettingProvider : SettingsProvider
 {
     private const string SettingPath = "Preferences/_CustomEditor/HierarchyGUISetting";
@@ -41,3 +43,4 @@ public class HierarchyGUISettingProvider : SettingsProvider
         }
     }
 }
+#endif

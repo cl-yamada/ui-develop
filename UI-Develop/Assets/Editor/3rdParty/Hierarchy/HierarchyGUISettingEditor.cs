@@ -1,10 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 
-/// 
-/// Preferencesに設定を以降したので廃止
-///
-#if false
 public class HierarchyGUISettingEditor : EditorWindow
 {
     private static HierarchyGUISetting setting;
@@ -12,7 +8,7 @@ public class HierarchyGUISettingEditor : EditorWindow
     private static Color defaultColor;
 
     // ウィンドウの表示を開始するためのメニュー項目を追加します
-    [MenuItem("Window/HierarchyGUISetting")]
+    [MenuItem("Edit/Clover Lab/HierarchyGUISetting")]
     public static void ShowWindow()
     {
         // ウィンドウを表示します（"My Editor Window"はウィンドウのタイトルです）
@@ -21,7 +17,7 @@ public class HierarchyGUISettingEditor : EditorWindow
 
     private void OnEnable()
     {
-        setting = AssetDatabase.LoadAssetAtPath("Assets/Editor/3rdParty/Hierarchy/HierarchyGUISetting.asset", typeof(HierarchyGUISetting)) as HierarchyGUISetting;
+        setting = HierarchyGUISetting.instance.LoadSettings();
     }
 
     // エディターウィンドウのUIを描画するためのメソッドです
@@ -39,13 +35,13 @@ public class HierarchyGUISettingEditor : EditorWindow
 
         // エディターウィンドウのUI要素をここに追加します
         DesignLabel(text: "アクティブフラグ", bgColor: Color.green);
-        
+
         Toggle("Show check box", ref setting.useActiveToggle);
-        
+
         DesignLabel(text: "コンポーネントアイコン", bgColor: Color.green);
 
         Toggle("Show icon", ref setting.useDrawComponents);
-        
+
         DesignLabel(text: "Image参照アイコン", bgColor: Color.green);
 
         Toggle("Show mini image", ref setting.useDrawImageReference);
@@ -54,6 +50,7 @@ public class HierarchyGUISettingEditor : EditorWindow
         if (GUI.changed)
         {
             EditorApplication.RepaintHierarchyWindow();
+            HierarchyGUISetting.instance.SaveSettings(setting);
             EditorUtility.SetDirty(setting);
         }
     }
@@ -114,4 +111,3 @@ public class HierarchyGUISettingEditor : EditorWindow
         GUILayout.Label("右寄せラベル", rightStyle);
     }
 }
-#endif
